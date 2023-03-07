@@ -1,12 +1,19 @@
 from kafka import KafkaProducer
+import random
 
-topic = "foobar"
+#topic = "foobar"
+# kafka-topics --bootstrap-server localhost:9092 --create --topic test-topic33 --replication-factor 3 --partitions 3
+topic = "test-topic33"
+brokers = 3
 
 producer = KafkaProducer(bootstrap_servers='localhost:29092')
-for x in range(100):
-    print("x", x)
+x = 0
+for y in range(10):
+    print("x: %s y: %s" % (x, y))
+    x = random.randint(0, brokers)
     # Use a key for hashe-partitioning
-    producer.send(topic, key=b'mykey', value=b'message_x_' + str(x).encode())
+    #producer.send(topic, headers=[(b'z', b'1')], key=b'mykey' + str(x).encode(), value=b'message_x_%d_y_%d' % (x, y))
+    producer.send(topic, key=b'mykey' + str(x).encode(), value=b'message_x_%d_y_%d' % (x, y))
 
 # Block until all pending messages are at least put on the network
 # NOTE: This does not guarantee delivery or success! It is really
