@@ -3,6 +3,11 @@ import random
 
 #topic = "foobar"
 # kafka-topics --bootstrap-server localhost:9092 --create --topic test-topic33 --replication-factor 3 --partitions 3
+# kafka-console-producer  --bootstrap-server localhost:9092 --topic test-topic33 --property "key.separator=," --property "parse.key=true"
+# 0,1
+# 1,1
+# 2,1
+# 3,1
 topic = "test-topic33"
 brokers = 3
 

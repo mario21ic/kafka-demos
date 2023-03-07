@@ -12,6 +12,7 @@ def on_send_error(excp):
 
 
 topic = "foobar"
+#topic = "test-topic2"
 
 # configure multiple retries
 producer = KafkaProducer(
