@@ -30,4 +30,34 @@ kafka-topics --bootstrap-server localhost:9092 --create --topic test-topic4 --re
 kafka-topics --bootstrap-server localhost:9092 --create --topic test-topic3 --replication-factor 3 --partitions 4
 ```
 
+Producer:
+```
+kafka-console-producer --bootstrap-server localhost:9092 --topic weblog
+
+kafka-console-producer  --bootstrap-server localhost:9092 --topic weblog --property "key.separator=:" --property "parse.key=true"
+```
+
+Consumer:
+```
+kafka-console-consumer \
+    --bootstrap-server kafka01:9092 \
+    --topic weblog  \
+    --from-beginning \
+    --property print.headers=true \
+    --property print.timestamp=true
+
+kafka-console-consumer \
+    --bootstrap-server kafka01:9092 \
+    --topic weblog  \
+    --group "consumer01" \
+    --from-beginning
+```
+
+Consumer groups:
+```
+kafka-consumer-groups --bootstrap-server localhost:9092 --list
+
+kafka-consumer-groups --bootstrap-server localhost:9092 --describe --group gapplication
+kafka-consumer-groups --bootstrap-server localhost:9092 --describe --group gapplication-01
+```
 
