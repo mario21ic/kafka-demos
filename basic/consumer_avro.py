@@ -25,12 +25,12 @@ for message in consumer:
     #print(msg)
     # message value and key are raw bytes -- decode if necessary!
     # e.g., for unicode: `message.value.decode('utf-8')`
-    #print("%s:%d:%d: key=%s value=%s" % (message.topic, message.partition,
-    #                                      message.offset, message.key,
-    #                                      message.value))
     bytes_reader = io.BytesIO(message.value)
     decoder = BinaryDecoder(bytes_reader)
     reader = DatumReader(schema)
-    user1 = reader.read(decoder)
-    print('user:', user1)
+    value = reader.read(decoder)
+    #print('user:', user1)
+    print("topic=%s partition=%d offset=%d key=%s value=%s" % (message.topic, message.partition,
+                                          message.offset, message.key,
+                                          value))
 
