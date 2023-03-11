@@ -1,0 +1,4 @@
+confluent-kafka==2.0.2
+kafka-python==2.0.2
+msgpack==1.0.4
+avro==1.11.1
